@@ -92,7 +92,6 @@ ON DELETE CASCADE
 - SELECT
 - FROM(table_name)
 - WHERE
-- SELECT
 - COUNT(Column_name) AS 'what_you_want_to_call_output' --use primary keys for counting rows.
 - SELECT TOP <range> <Column_name> --Need to sort the data first.
 - AND
