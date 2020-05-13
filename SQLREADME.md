@@ -114,9 +114,9 @@ ON DELETE CASCADE
 
 ## Joins and subqueries
 - Inner join: queries two tables and shows data with matching entries in multiple tables.
-- Left join: queries two tables showing the all the data of the first table and selective data of the second table.
-- Right join:
-- Full outer join:
+- Left join: queries two tables showing the all the data of the first table and selective data of the second table. (The left table will be decided by the query and will typically be the first stated table after 'FROM'.)
+- Right join: The vice versa of the left join, where the all data from the right table will be displayed with selective data of the left table.  
+- Full outer join: Shows all the data from both tables.
 
 ## Different keys
 
