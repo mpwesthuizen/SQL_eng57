@@ -148,6 +148,13 @@ VALUES
 (
     'Germany'
 )
+(
+    'Sweden'
+)
+(
+    'Repubic of Ireland'
+)
+
 
 CREATE TABLE cities
 (
@@ -160,42 +167,50 @@ CREATE TABLE cities
 
 INSERT INTO cities
 (
-    city_name
+    country_id, city_name
 )
 VALUES
 (
-    'Madrid'
+    3,'Munich'
 ),
 (
-    'Paris'
+    2,'Paris'
 ),
 (
-    'Munich'
+    1,'Madrid'
+)
+(
+    5,'Cork'
 )
 
 --Left join syntax
 
-SELECT * FROM countries LEFT JOIN cities ON countries.country_id = cities.city_id 
+SELECT * FROM countries LEFT JOIN cities ON countries.country_id = cities.country_id 
 
 --right join syntax
 
-SELECT * FROM countries RIGHT JOIN cities ON countries.country_id = cities.city_id 
+SELECT * FROM countries RIGHT JOIN cities ON countries.country_id = cities.country_id 
 
 
 --Inner join syntax
 
-SELECT * FROM countries INNER JOIN cities ON countries.country_id = cities.city_id 
+SELECT * FROM countries INNER JOIN cities ON countries.country_id = cities.country_id 
 
 
 --Outer join syntax
 
-SELECT * FROM countries FULL OUTER JOIN cities ON countries.country_id = cities.city_id 
+SELECT * FROM countries FULL OUTER JOIN cities ON countries.country_id = cities.country_id 
+
+
+
+
+
 
 -- (12%4)*5/2+5-2
 USE Northwind
 SELECT UnitPrice, Quantity, Discount, UnitPrice * Quantity AS "Gross Total" FROM [Order Details]
 
-SELECT UnitPrice, Quantity, Discount, (UnitPrice * (1 - Discount)) * Quantity AS "Net Total" FROM [Order Details] GROUP BY ORDER BY  "Net Total" DESC
+SELECT UnitPrice, Quantity, Discount, (UnitPrice * (1 - Discount)) * Quantity AS "Net Total" FROM [Order Details] GROUP BY UnitPrice ORDER BY "Net Total" DESC
 
 -- Using Group By to remove duplicate OrderID's to show Gross Total in 'receipt like' format. 
 SELECT OrderID, UnitPrice, Quantity, Discount, UnitPrice * Quantity AS "Gross Total" FROM [Order Details] GROUP BY OrderID, UnitPrice, Quantity, Discount ORDER by "Gross Total" DESC
@@ -244,3 +259,95 @@ SELECT TOP 1 CategoryID, AVG(ReorderLevel) AS "AVG Reorder level"
 FROM Products
 GROUP BY CategoryID 
 ORDER BY "AVG Reorder level" DESC
+
+-- Using group by having with aggregate functions
+SELECT SupplierID, 
+SUM(UnitsOnOrder) AS "Total on order",
+AVG(UnitsOnOrder) AS "AVG on order"
+FROM Products
+GROUP BY SupplierID
+HAVING AVG(UnitsOnOrder)>5
+
+-- Using an inner join.
+Use Northwind
+
+SELECT * From Suppliers
+
+SELECT SupplierID, CompanyName AS "Supplier Name", AVG(UnitsOnOrder) AS "Average Units on Order"
+FROM Products INNER JOIN Suppliers
+ON SupplierID=SupplierID
+GROUP BY SupplierID, CompanyName 
+
+
+--uSING LEFT JOIN
+SELECT 
+
+
+--Joining from more than two tables.
+SELECT ProductName, UnitPrice, CompanyName AS "Supplier", CatergoryName AS "Category"
+FROM Products
+INNER JOIN Suppliers ON SupplierID = SupplierID  
+INNER JOIN Categories ON  CategoryID = CategoryID
+
+
+-- Joining from more than two tables task 2.
+SELECT Order, OrderDate, Freight, FirstName +' '+ LastName AS 
+FROM
+INNER JOIN ON
+INNER JOIN ON
+
+SELECT OrderID, CONVERT(VARCHAR()) 
+
+--Sub queries
+/* Find out the company names of the customerids who have placed an order*/
+SELECT CompanyName AS "Customers"
+FROM Customers
+WHERE CustomerID IN
+-- Below is the sub query
+(SELECT CustomerID FROM Orders)
+
+-- Join alternative of the above 
+SELECT DISTINCT CompanyName
+FROM Customers
+INNER JOIN Orders ON Orders.CustomerID = Customers.CustomerID
+
+/* Find out the company names of the customerids who have not placed an order*/
+SELECT CompanyName AS "Customers"
+FROM Customers
+WHERE CustomerID NOT IN 
+(SELECT CustomerID FROM Orders)
+
+-- Where a nested query acts as an outer part, as a column
+SELECT OrderID, ProductID, UnitPrice, Quantity, Discount,
+(SELECT MAX(UnitPrice) FROM [Order Details]) AS "Max Price"
+FROM [Order Details]
+
+-- Advanced query, Where the nested query acts a table
+SELECT od.ProductID, sq1.totalamt AS "Total Sold for this Product", UnitPrice, UnitPrice*Quantity/totalamt *100 AS "% of Total"
+FROM [Order Details] od
+INNER JOIN
+(SELECT ProductID, SUM(UnitPrice*Quantity)AS totalamt
+FROM [Order Details]
+GROUP BY ProductID) sq1 ON sq1.ProductID = od.ProductID
+
+USE Northwind
+--task
+SELECT *
+FROM [Order Details] 
+WHERE ProductID IN
+(SELECT ProductID
+FROM Products WHERE Discontinued=1)
+
+-- The inner join version of the task
+SELECT od.OrderID, od. 
+FROM
+WHERE o.ProductID IN 
+INNER JOIN Products ON p.ProductID=od.ProductID
+
+
+--Union ALL example creating a single column that shows all the employeeids and supplierids.
+SELECT EmployeeID AS "Employee/Supplier"
+FROM Employees
+UNION ALL
+SELECT SupplierID
+FROM Suppliers

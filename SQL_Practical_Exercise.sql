@@ -32,10 +32,16 @@ WHERE Country LIKE('UK')
 
 -- Q1.6 INCOMPLETE
 
--- Q1.7 INCOMPLET
-E
--- Q1.8 INCOMPLETE
+-- Q1.7 
+SELECT COUNT(*) AS "Total UK and USA Freight with over 100 orders"
+FROM Orders
+WHERE Freight > 100 AND ShipCountry IN ('UK', 'USA')
 
+
+-- Q1.8 INCOMPLETE
+SELECT * FROM Orders
+
+---------------------------------------------------------------------------
 -- Q2.1
 CREATE TABLE Spartans
 (
@@ -97,6 +103,7 @@ VALUES
 
 SELECT * FROM Spartans
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Q3.1 INCOMPLETE
 SELECT TitleOfCourtesy+' '+FirstName+' '+LastName AS "Employee Name", ReportsTo
 FROM Employees

@@ -49,7 +49,7 @@ Used to manipulate the dates in databases.
 Creates dynamic results based on dynamic data. You need to use single quotes for data and double quotes for column aliases.
 
 ## Aggreagate functions
-used to find total figures.
+Used to find total figures.
 - sum(<Column Name>):Sums the rows.
 - avg(<Column Name>):Averages the rows.
 - min(<Column Name>): Returns the minimum row.
@@ -63,3 +63,11 @@ FROM Products
 GROUP BY CategoryID
 '''
 Remember the Select clause must match the group by clause excluding aggregates.
+
+## Subqueries
+Are nested queries with a select statement. They are similar to Joins in the sense that they allow you to use data from two tables. They are useful as they show a clear process of data manipulation and are seen as alternatives to joins. However joins will be prefered when using data in more and more tables as more complex sub queries will need to be used and joins will become clearer. Example:
+'''SQL
+'''
+Note: when debugging start with the outer query to best locate bugs.
+
+- UNION & UNION ALL: adds data from one union to another union to form a column.
