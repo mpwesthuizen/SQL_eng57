@@ -31,6 +31,7 @@ FROM Employees
 WHERE Country LIKE('UK')
 
 -- Q1.6 INCOMPLETE
+SELECT sum the units with the discount 
 
 -- Q1.7 
 SELECT COUNT(*) AS "Total UK and USA Freight with over 100 orders"
@@ -38,8 +39,10 @@ FROM Orders
 WHERE Freight > 100 AND ShipCountry IN ('UK', 'USA')
 
 
--- Q1.8 INCOMPLETE
-SELECT * FROM Orders
+-- Q1.8 
+SELECT TOP 1 OrderID, (UnitPrice * Quantity) * (1*Discount) AS "Discounted Totals"
+FROM [Order Details] 
+ORDER BY "Discounted Totals" DESC
 
 ---------------------------------------------------------------------------
 -- Q2.1
