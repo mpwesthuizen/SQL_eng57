@@ -108,6 +108,9 @@ VALUES
 ),
 (
     'Mr.', 'Fahad', 'Khisaf', 'Oxford Brookes', 'Chemistry', '2.2'
+),
+(
+    'Mr.', 'Ashraf', 'Mouhamud', 'Cambridge', 'Religious Studies', '2.2'
 )
 
 SELECT * FROM Spartans
