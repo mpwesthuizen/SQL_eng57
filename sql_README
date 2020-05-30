@@ -1,7 +1,7 @@
-# SQL README.md
+# SQL README
 
 ## DML and DDL
-'''SQL
+```SQL
 -- creates database.
 
 CREATE DATABASE <database_name>
@@ -70,7 +70,7 @@ WHERE<column_name=row_value>
 
 ON DELETE CASCADE
 
-'''
+```
 
 ## Different SQL types
 
@@ -86,7 +86,7 @@ ON DELETE CASCADE
 - TIME
 - DECIMAL
 - NUMERIC
--
+
 
 ##  Queries
 - SELECT
@@ -106,10 +106,7 @@ ON DELETE CASCADE
 - BETWEEN
 - GROUP BY <> HAVING <> IN (,)
 - CONCAT('X','X')
--
--
--
--
+
 
 ## Joins and subqueries
 - Inner join: queries two tables and shows data with matching entries in multiple tables.
@@ -120,7 +117,7 @@ ON DELETE CASCADE
 ## Different keys
 
 1) Primary Keys: Unique data shared in relational databases.
-2) Foreign Keys:
+2) Foreign Keys: Are the share column between two tables. 
 3) Candidate Keys:
 4) Composite Keys:
 
@@ -129,12 +126,11 @@ ON DELETE CASCADE
 - Normalisation transforms a database into something more compact, easy to use and highly scalable by removing data redundancies such as removing duplicates.
 
 - 3 Normal forms:
-1) first normal form: Everything atomic, meaning single value for each row. For multiple values create a seperate table for the column where the rows have multiple data point. Note - this will mean repeating rows in second table for more than two datapoints.
-No repitition of datapoints.
+1) first normal form: Everything atomic, meaning single value for each row. For multiple values create a seperate table for the column where the rows have multiple data point. Note - this will mean repeating rows in second table for more than two datapoints. No repitition of datapoints.
 
-2)Second normal form: Must also satisfy first normal form. All non-key are fully functional dependency on the primary and not partly dependent. Common solutions involve the non key data is stored in a seperate table with a primary key that is a foreign key to fully dependent key.
+2) Second normal form: Must also satisfy first normal form. All non-key are fully functional dependency on the primary and not partly dependent. Common solutions involve the non key data is stored in a seperate table with a primary key that is a foreign key to fully dependent key.
 
-3)Third normal form: Must satisfy second normal form. There is no transitive funtional dependency.
+3) Third normal form: Must satisfy second normal form. There is no transitive funtional dependency.
 
 ### Extra
 - Research table aliases to create naming shortcuts.

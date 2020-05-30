@@ -8,7 +8,7 @@
 - '-' = subtract
 
 - When using queries we can make calculations using the above operators to manipulate data. Example:
-'''SQL SELECT UnitPrice, Quantity, Discount, (UnitPrice * (1 - Discount)) * Quantity AS "Net Total" FROM [Order Details]'''
+```SQL SELECT UnitPrice, Quantity, Discount, (UnitPrice * (1 - Discount)) * Quantity AS "Net Total" FROM [Order Details]```
 
 
 ## Sorting and order of output
@@ -57,17 +57,17 @@ Used to find total figures.
 - count(<Column Name>):counts the rows.
 
 Using the Group By clause with Aggreagate functions. Example:
-'''SQL
+```SQL
 SELECT CategoryID, AVG(ReorderLevel) AS "AVG Reorder level"
 FROM Products
 GROUP BY CategoryID
-'''
+```
 Remember the Select clause must match the group by clause excluding aggregates.
 
 ## Subqueries
 Are nested queries with a select statement. They are similar to Joins in the sense that they allow you to use data from two tables. They are useful as they show a clear process of data manipulation and are seen as alternatives to joins. However joins will be prefered when using data in more and more tables as more complex sub queries will need to be used and joins will become clearer. Example:
-'''SQL
-'''
+```SQL
+```
 Note: when debugging start with the outer query to best locate bugs.
 
 - UNION & UNION ALL: adds data from one union to another union to form a column.

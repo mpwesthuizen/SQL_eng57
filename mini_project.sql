@@ -121,12 +121,12 @@ SELECT TitleOfCourtesy+' '+FirstName+' '+LastName AS "Employee Name", ReportsTo
 FROM Employees
 
 -- Q3.2(EXCEL) 
--- USing SQL with EXCEL. First Create a new folder. Then export the data via 'task' and export, select Excel. Complete the exprot wizard. When fininshed the data should be in an excel file within the file specified.
-SELECT CompanyName, FORMAT(SUM([Order Details].UnitPrice * Quantity),'C') AS "Supplier Total"
+-- Using SQL with EXCEL. First Create a new folder. Then export the data via 'task' and export, select Excel. Complete the export wizard. When finished the data should be in an excel file within the file specified.
+SELECT CompanyName, FORMAT(SUM(([Order Details].UnitPrice * Quantity) * (1-Discount)),'C') AS "Supplier Total"
 FROM [Order Details]
 INNER JOIN Products ON [Order Details].ProductID = Products.ProductID
 INNER JOIN  Suppliers ON Products.SupplierID = Suppliers.SupplierID 
-GROUP BY  CompanyName HAVING SUM([Order Details].UnitPrice * Quantity)> 10000 
+GROUP BY  CompanyName HAVING SUM(([Order Details].UnitPrice * Quantity) * (1-Discount))> 10000 
 ORDER BY SUM([Order Details].UnitPrice * Quantity) DESC  
 
 -- Q3.3
@@ -134,8 +134,8 @@ SELECT TOP 10 CompanyName, ContactName, FORMAT(SUM(([Order Details].UnitPrice * 
 FROM Customers
 INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID
 INNER JOIN [Order Details] ON  Orders.OrderID = [Order Details].OrderID
-WHERE ShippedDate BETWEEN '1998-01-01' AND '1998-05-06'
-GROUP BY CompanyName, ContactName ORDER BY SUM(([Order Details].UnitPrice *(1-Discount))* Quantity) DESC
+WHERE YEAR(Orders.OrderDate) = (SELECT MAX(YEAR(OrderDate)) FROM Orders) AND ShippedDate IS NOT NULL
+GROUP BY Customers.CustomerID
  
 -- Q3.4(EXCEL)
 SELECT AVG(DATEDIFF(dd, OrderDate, ShippedDate)) AS "Average Amount of Shipping Days ", FORMAT(ShippedDate, 'MMM-yy') AS "Shipping Month"
