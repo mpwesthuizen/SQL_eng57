@@ -74,38 +74,37 @@ ON DELETE CASCADE
 
 ## Different SQL types
 
-- CHAR
-- CHARSET
-- VARCHAR
-- INT
-- FLOAT
-- IDENTITY(<seed>,<increment>)
-- BIT
-- DATETIME
-- DATE
-- TIME
-- DECIMAL
-- NUMERIC
+- CHAR: limits data to characters.
+- VARCHAR: limits data to characters and numbers.
+- INT: limits to integers.
+- FLOAT: limits to floats.
+- IDENTITY(seed, increment): where seed is the starting value and increment adds to the value per subsequent row.
+- BIT(size): allocates the number of bits per value(specified as size). Size can be 1-64.
+- BOOL: 0 = false, nonzero values = true.
+- DATETIME: limits to date with timestamp.
+- DATE: limits to date.
+- TIME: limits to timestamp.
+- DECIMAL (p, s): p = max number of digits (both left and right side of decimal), and s = max number of digits right of decimal.
+- NUMERIC (p, s): p = max number of digits (both left and right side of decimal), and s = max number of digits right of decimal.
 
 
 ##  Queries
-- SELECT
-- FROM(table_name)
-- WHERE
-- COUNT(Column_name) AS 'what_you_want_to_call_output' --use primary keys for counting rows.
+- SELECT: selects the following data.
+- FROM(table name): searches table
+- WHERE(column name): column as an argument.
+- COUNT(column name) AS 'what_you_want_to_call_output' --use primary keys for counting rows.
 - SELECT TOP <range> <Column_name> --Need to sort the data first.
-- AND
-- OR
+- AND: adding arguments before and after AND.
+- OR: using either the arguments before or after OR.
 - SELECT DISTINCT -- Removes duplicates.
-- '%x'
-- 'x%'
-- _
-- [] -- Charlist.
-- [^] --Charlist operator.
-- IN
-- BETWEEN
-- GROUP BY <> HAVING <> IN (,)
-- CONCAT('X','X')
+- '%x': finds values with x or other characters before x.
+- 'x%': finds values with x or other characters after x.
+- [] : Charlist.
+- [^] : Charlist operator(wildcard).
+- IN(arg1, arg2, etc.): sustitute for using AND when looking for multiple arguments in a column.
+- BETWEEN: between the subsequent arguments.
+- GROUP BY <> HAVING <> IN (,): groups the output by the column name/s stated, having an argument in the column/s. In is used when there are multiple arguments for multiple columns.
+- CONCAT('X','X'): concatenates x and x
 
 
 ## Joins and subqueries
@@ -116,10 +115,10 @@ ON DELETE CASCADE
 
 ## Different keys
 
-1) Primary Keys: Unique data shared in relational databases.
-2) Foreign Keys: Are the share column between two tables. 
-3) Candidate Keys:
-4) Composite Keys:
+1) Primary Keys: Unique data shared in relational databases in one or more columns. The primary key uniquely identifies the table. Only one candidate key can be a primary key.
+2) Foreign Keys: Are the shared column between two tables.
+3) Candidate Keys: can be a column or combination of columns that can qualify as unique key in database.
+4) Composite Keys: a combination of 2 or more columns in a table that uniquely identifies each row in a table, where uniqueness is gauranteed  when the columns are combined.(one column that can gaurantee unique rows is a candidate key).
 
 ## Normalisation
 
